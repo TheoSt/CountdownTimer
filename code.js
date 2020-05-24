@@ -17,6 +17,9 @@ var easterButton = document.getElementById("easterButton");
 var inputsTime = ["","","","","",""];
 
 var stopBool = false;
+var backBool = false;
+var x = 0;
+var finalTime = 0;
 
 chritmasButton.addEventListener("click", function() {
   inputs[0].value = "25";
@@ -59,6 +62,7 @@ stop.addEventListener("click",function() {
 
 //start the timer
 start.addEventListener("click", function() {
+  stopBool = false;
   //dont display the countdown expired text
   expDisplay.style.display ="none";
   for(var i=0; i<inputs.length; i++) { //take the values from the inputs
@@ -76,12 +80,11 @@ start.addEventListener("click", function() {
     mainDateSpan.innerHTML = endDate; //show the end date in a text
 
     //begin the timer
-    var x = setInterval(function() {
+    x = setInterval(function() {
       var currentDate = new Date().getTime(); //take the current date
       var distance = endTime - currentDate; //calc the distance between the end date and the current in ms
 
-      var finalTime = timeCalc(distance); //calc the final distance in a date format(distance is in ms)
-
+      finalTime = timeCalc(distance); //calc the final distance in a date format(distance is in ms)
       if(stopBool) { //If we pressed the stop button stop the timer
         clearInterval(x);
       }
@@ -115,10 +118,7 @@ start.addEventListener("click", function() {
 
 //go back to the main section with selects
 back.addEventListener("click",function() {
-  for(var i=0; i<inputsTime.length; i++) { //init the time of the inputs
-    inputsTime[i] = "";
-  }
-  stopBool = false;
+  stopBool = true;
   timerSection.style.display="none"; //show the main section and hide the timer
   mainSection.style.display = "block";
 });
