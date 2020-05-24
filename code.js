@@ -17,7 +17,6 @@ var easterButton = document.getElementById("easterButton");
 var inputsTime = ["","","","","",""];
 
 var stopBool = false;
-var backBool = false;
 var x = 0;
 var finalTime = 0;
 
